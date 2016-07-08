@@ -1,0 +1,21 @@
+{
+  "name": "haijs",
+  "authors": [
+    "HAI BUI"
+  ],
+  "description": "Automation testing tool",
+
+  "keywords": [
+    "Automation testing tool"
+  ],
+  "license": "All rights reserved",
+  "homepage": "http://outsourceit.no/",
+  "private": false,
+  "dependencies": {
+  
+  },
+  "devDependencies": {},
+  "resolutions": {
+ 
+  }
+}

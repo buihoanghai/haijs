@@ -1,0 +1,5 @@
+dist/
+node_modules/
+source/grunt_assets/html2js.temp/
+source/grunt_assets/sass.temp/a64e1ab86c166927b96ccf712df79ccd0e2936f2/main-import.scssc
+source/grunt_assets/sass.temp/
