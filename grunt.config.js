@@ -3,7 +3,7 @@ module.exports = {
 
   app_files: {
     js: [
-      'source/*/*.js'
+      'source/**/**/*.js'
     ],
     jsunit: [ 'source/**/*.spec.js' ],
 
@@ -14,24 +14,5 @@ module.exports = {
 		'!source/scss/**/main.scss',
 		'!source/scss/**/main-import.scss',
 	],
-  },
-
- 
-
-  vendor_files: {
-    js_header: [
-    
-    ],
-    cdn_header: [],
-
-    js_footer: [
-    
-    ],
-    cdn_footer: [
-    ],
-
-    assets: [
-    ]
-  },
-
+  }
 };

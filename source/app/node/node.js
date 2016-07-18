@@ -17,7 +17,9 @@
     function init() {
 
       vm.event = new window.haijs.Event(element, type);
-      vm.prevNode.setNextNode(vm);
+      if (vm.prevNode) { // if dont exist prevNode this node is first node
+        vm.prevNode.setNextNode(vm);
+      }
     }
 
     function play() {

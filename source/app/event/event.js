@@ -2,7 +2,8 @@
   "use strict";
   var TYPE = {
     click: {
-      name:"click"
+      name: "click",
+      trigger:"click"
     },
     input: {
       name:"input"
