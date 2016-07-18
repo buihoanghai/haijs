@@ -25,10 +25,10 @@ module.exports = function (grunt) {
                     style: 'expanded',
                     sourcemap: 'none',
                     lineNumbers: true,
-                    cacheLocation: 'source/grunt_assets/sass.temp/'
+                    cacheLocation: 'grunt_assets/sass.temp/'
                 },
                 files: {
-                    'source/grunt_assets/sass.temp/main.css': 'source/scss/main-import.scss'
+                    'grunt_assets/sass.temp/main.css': 'scss/main-import.scss'
                 }
             },
 			    release: {
@@ -36,11 +36,11 @@ module.exports = function (grunt) {
           style: 'compressed',
           sourcemap: 'none',
           lineNumbers: false,
-          cacheLocation: 'source/grunt_assets/sass.temp/',
+          cacheLocation: 'grunt_assets/sass.temp/',
     
         },
         files: {
-          'source/grunt_assets/sass.temp/main.css': 'source/scss/main-import.scss'
+          'grunt_assets/sass.temp/main.css': 'scss/main-import.scss'
         }
       },
         },
@@ -53,7 +53,7 @@ module.exports = function (grunt) {
             },
 		
 			sass_temp: { src: [ '<%= sass.develop.options.cssDir %>' ] },
-			index_temp: { src: [ 'source/grunt_assets/index.temp/' ] },
+			index_temp: { src: [ 'grunt_assets/index.temp/' ] },
 			  release_full: {
 				src : [ 'dist/full/*', '!dist/full/README.md' ]
 			},
@@ -95,7 +95,7 @@ module.exports = function (grunt) {
                   {
                       src: ['index.html'],
                       dest: 'dist/develop/',
-                      cwd: 'source/grunt_assets/index.temp/',
+                      cwd: 'grunt_assets/index.temp/',
                       expand: true
                   }
                 ]
@@ -103,7 +103,7 @@ module.exports = function (grunt) {
             develop_css: {
                 src: ['main.css'],
                 dest: 'dist/develop/assets/',
-                cwd: 'source/grunt_assets/sass.temp/',
+                cwd: 'grunt_assets/sass.temp/',
                 expand: true,
                 rename: function (dest, src) {
                     var ver = grunt.config('pkg.version');
@@ -221,7 +221,7 @@ module.exports = function (grunt) {
           {
             src: [ 'index.html' ],
             dest: 'dist/minified/',
-            cwd: 'source/grunt_assets/index.temp/',
+            cwd: 'grunt_assets/index.temp/',
             expand: true
           }
         ]
@@ -229,7 +229,7 @@ module.exports = function (grunt) {
       release_css: {
         src: [ 'main.css' ],
         dest: 'dist/minified/assets/',
-        cwd: 'source/grunt_assets/sass.temp/',
+        cwd: 'grunt_assets/sass.temp/',
         expand: true,
         rename: function ( dest, src ) {
           var ver  = grunt.config('pkg.version');
@@ -266,7 +266,7 @@ module.exports = function (grunt) {
 
             app: {
                 src: ['<%= app_files.atpl %>'],
-                dest: 'source/grunt_assets/html2js.temp/app/templates-app.js'
+                dest: 'grunt_assets/html2js.temp/app/templates-app.js'
             }
          
         },
@@ -294,10 +294,10 @@ module.exports = function (grunt) {
     },
 		main_sass:{
 		unit: {
-				 dir: 'source/',
-					result_dir: 'source/grunt_assets/sass.temp/',
+				 dir: '',
+					result_dir: 'grunt_assets/sass.temp/',
 					file: 'grunt_assets/main-import.scss',
-					base: 'source/',
+					base: '',
 					
 					files: [
 					  {
@@ -334,16 +334,16 @@ module.exports = function (grunt) {
 
 		karmaconfig: {
 		  unit: {
-			source: 'source/grunt_assets/karma-unit.tpl.js',
-			target_dir: 'source/grunt_assets/karma.temp/',
+			source: 'grunt_assets/karma-unit.tpl.js',
+			target_dir: 'grunt_assets/karma.temp/',
 			target_name: 'karma-unit.js',
-			base: 'source/',
+			base: '/',
 			cdn: [
 		
 			],
 			src: [
 
-			  'source/grunt_assets/html2js.temp/**/templates-*.js',
+			  'grunt_assets/html2js.temp/**/templates-*.js',
 			  '<%= test_files.js %>',
 			  '<%= app_files.js %>',
 			  '<%= app_files.jsunit %>'
