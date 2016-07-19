@@ -2,4 +2,4 @@
   function Scenario() {
 
   }
-}).call(this);
+}).call();

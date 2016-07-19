@@ -168,6 +168,7 @@ module.exports = function (grunt) {
       app_js: {
         files: ['<%= app_files.js %>'],
         tasks: [
+		'full_core',
 			//	 'karma:unit:run' 
         ]
       },

@@ -4,35 +4,44 @@
   function Scenario() {
     var vm = this;
     vm.time = +new Date();
-    vm.firstNode = {};
+    vm.firstNode = undefined;
     vm.nodes = [];
     //define function
-    vm.record = record;
+    vm.startRecord = startRecord;
     vm.stopRecord = stopRecord;
     vm.playBack = playBack;
-  }
-  function init() { 
+    function init() {
 
-  }
-  function record() {
-    document.onclick = _onDocumentClick;
+    }
+    function startRecord() {
+      document.onclick = _onDocumentClick;
 
-  }
-  function stopRecord() {
+    }
+    function stopRecord() {
+      document.onclick = undefined;
+    }
+    function playBack() {
+      if (vm.firstNode) {
+        vm.firstNode.play(vm.time);
+      }
+    }
+    function _onDocumentClick(e) {
+      console.log(e);
+      _createNode(e);
+    }
+    function _createNode(e, type) {
+      var nodes = vm.nodes;
+      var prevNode = nodes[nodes.length - 1];
+      var node = new haijs.Node(e, type, prevNode);
+      _setFirstNode(node);
+      vm.nodes.push(node);
+    }
+    function _setFirstNode(node) {
+      vm.firstNode = vm.firstNode || node;
 
-  }
-  function playBack() {
-
-  }
-  function _onDocumentClick(element, b, c) {
-    _createNode(element, 'click')
-  }
-  function _createNode(elem, type) {
-    var nodes = vm.nodes;
-    var prevNode = nodes[nodes.length - 1];
-    var node = new haijs.Node(element, type, prevNode);
-    vm.nodes.push(node);
-  }
+    }
+  } 
+ 
 
   window.haijs.Scenario = Scenario;
 }).call();
