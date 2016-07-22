@@ -16,14 +16,14 @@
 
     function init() {
 
-      vm.event = new window.haijs.Event(e, type);
+      vm.event = haijs.Event.factory(type, e);
       if (vm.prevNode) { // if dont exist prevNode this node is first node
         vm.prevNode.setNextNode(vm);
       }
     }
 
     function play(time) {
-      var timeout = time - vm.time;
+      var timeout = vm.time - time;
       console.log('play :' + timeout);
       setTimeout(function () {
         vm.event.play();
@@ -31,7 +31,11 @@
       }, timeout);
     }
     function callNextNode() {
-      vm.nextNode.play(vm.time);
+      if (vm.nextNode) {
+        vm.nextNode.play(vm.time);
+      } else {
+        console.log('done');
+      }
     }
     //Set next node of previous node
     function setNextNode(node) {
@@ -39,6 +43,6 @@
     }
     init();
   }
-  window.haijs.Node = Node;
+  haijs.Node = Node;
 
 }).call();

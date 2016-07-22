@@ -1,17 +1,15 @@
 ﻿(function () {
   "use strict";
   var DEFAULT_FACTORY_TYPE = 'Click';
-  function Event(event, type) {
+  function Event(event) {
     var vm = this;
     vm.event = event;
 
-    function init(type) {
-      return factory(type);
-    }
     Event.prototype.play = function () {
 
     };
-    function factory(type) {
+  }
+  Event.factory = function factory(type, event) {
       var constr = type || DEFAULT_FACTORY_TYPE;
       // error if the constructor doesn't exist
       if (typeof Event[constr] !== "function") {
@@ -22,19 +20,18 @@
       }
       // at this point the constructor is known to exist
       // let's have it inherit the parent but only once
-      if (typeof Event[constr].prototype.drive !== "function") {
-        Event[constr].prototype = new Event();
-      }
+      Event[constr].prototype = new Event(event);
       // create a new instance
-      var event = new Event[constr]();
+      var e = new Event[constr]();
       // optionally call some methods and then return...
-      return event;
+      return e;
     };
 
     // define specific event makers
     Event.Click = function () {
+      var vm = this;
       this.play = function () {
-        var elem = event.targetElement;
+        var elem = vm.event.target;
         console.log('click');
         $(elem).trigger('click');
       };
@@ -44,8 +41,6 @@
 
       };
     };
-    return init();
-  }
 
   window.haijs.Event = Event;
 }).call();
