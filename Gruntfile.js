@@ -28,7 +28,7 @@ module.exports = function (grunt) {
           cacheLocation: 'grunt_assets/sass.temp/'
         },
         files: {
-          'grunt_assets/sass.temp/main.css': 'scss/main-import.scss'
+          'grunt_assets/sass.temp/main.css': 'source/scss/main-import.scss'
         }
       },
       min: {
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
 
         },
         files: {
-          'grunt_assets/sass.temp/main.css': 'scss/main-import.scss'
+          'grunt_assets/sass.temp/main.css': 'source/scss/main-import.scss'
         }
       },
     },
@@ -75,13 +75,13 @@ module.exports = function (grunt) {
         }
       },
       full_css: {
-        src: ['haijs'],
+        src: ['main.css'],
         dest: 'dist/',
         cwd: 'grunt_assets/sass.temp/',
         expand: true,
         rename: function (dest, src) {
           var ver = grunt.config('pkg.version');
-          return dest + src + ver + ".css";
+          return dest + "haijs" + ver + ".css";
         },
         options: {
           process: function (contents, srcpath) {
@@ -94,13 +94,13 @@ module.exports = function (grunt) {
         }
       },
       min_css: {
-        src: ['haijs.min'],
+        src: ['main.css'],
         dest: 'dist/',
         cwd: 'grunt_assets/sass.temp/',
         expand: true,
         rename: function (dest, src) {
           var ver = grunt.config('pkg.version');
-          return dest + src + ver + ".css";
+          return dest + "haijs" + ver + "min.css";
         },
         options: {
           process: function (contents, srcpath) {
@@ -130,9 +130,10 @@ module.exports = function (grunt) {
 
         },
         files: {
-          '<%= concat.header.dest %>': 'dist/haijs.<%= pkg.version %>.min.js'
+			
+          'dist/haijs.<%= pkg.version %>.min.js':'dist/haijs.<%= pkg.version %>.js'
         }
-      },
+      }
 
     },
     main_sass: {
@@ -223,7 +224,7 @@ module.exports = function (grunt) {
    'watch'
   ]);
   grunt.registerTask('release', [
-    'clean:dist', 'clean:sass_temp', 'copy:assets', 'sass_full', 'concat', 'uglify'
+    'clean:dist', 'clean:sass_temp','copy:assets','sass_full', 'sass_min','full_core', 'uglify'
   ]);
 
 
@@ -246,7 +247,7 @@ module.exports = function (grunt) {
       if (file.indexOf('app/') != -1) {
         appfolder.push(file);
       } else {
-        file = file.replace('scss/', '');
+        file = file.replace('source/scss/', '');
 
         scssfolder.push(file);
       }
