@@ -4,21 +4,30 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-include-replace');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-force');
-  grunt.loadNpmTasks('grunt-touch');
-  grunt.loadNpmTasks('grunt-jscs');
+  grunt.loadNpmTasks('grunt-html-convert');
 
   var userConfig = require('./grunt.config.js');
 
   var taskConfig = {
     pkg: grunt.file.readJSON("package.json"),
+	htmlConvert: {
+    options: {
+      module:'haijsTemplate',
+	  rename:function(moduleName){
+		  return moduleName.replace('.tpl.html', '').replace('../source/app/_tpl/', '');
+	  }
+    },
+    mytemplate: {
+      src: ['<%= app_files.tpl %>'],
+      dest: 'grunt_assets/tpl.temp/haijsTemplate.js'
+    },
+  },
     sass: {
       full: {
         options: {
@@ -119,7 +128,7 @@ module.exports = function (grunt) {
         stripBanners: true,
       },
       header: {
-        src: ['<%= app_files.js %>'],
+        src: ['grunt_assets/tpl.temp/haijsTemplate.js','<%= app_files.js %>'],
         dest: 'dist/haijs.<%= pkg.version %>.js'
       },
 
@@ -165,7 +174,13 @@ module.exports = function (grunt) {
       options: {
         spawn: false
       },
-
+	 tpl: {
+        files: ['<%= app_files.tpl %>'],
+        tasks: [
+		'full_core',
+			//	 'karma:unit:run' 
+        ]
+      },	
       app_js: {
         files: ['<%= app_files.js %>'],
         tasks: [
@@ -217,7 +232,7 @@ module.exports = function (grunt) {
 'scss_import', 'sass:min', 'copy:min_css'
   ]);
   grunt.registerTask('full_core', [
-    'concat', 
+    'htmlConvert','concat', 
   ]);
   grunt.registerTask('full', [
     'clean:dist', 'clean:sass_temp', 'copy:assets', 'sass_full', 'full_core',

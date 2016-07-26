@@ -3,7 +3,7 @@
   "homepage": "http://admin.digitaltmuseum.org/",
   "version": "v0.0.1-dev.1",
   "description": "Automation testing tool",
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/buihoanghai/haijs"
   },
@@ -25,6 +25,7 @@
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-force": "~1.0.0",
+    "grunt-html-convert": "0.0.2",
     "grunt-html2js": "~0.2.4",
     "grunt-include-replace": "~1.2.0",
     "grunt-jscs": "^2.1.0",

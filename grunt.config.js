@@ -7,7 +7,7 @@ module.exports = {
     ],
     jsunit: [ 'source/**/*.spec.js' ],
 
-    atpl: [ 'source/**/*.tpl.html' ],
+    tpl: [ 'source/**/*.tpl.html' ],
 	scss:[
 		'source/app/**/*.scss',
 		'source/scss/**/*.scss',
