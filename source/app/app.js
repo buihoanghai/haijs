@@ -1,13 +1,33 @@
 ﻿(function () {
   'use strict';
   window.scen = {};
-  var DEFAULT_CHAR_CODE_START = 17;// "keyQ"
-  var DEFAULT_CHAR_CODE_STOP = 25;// "keyY"
-  var DEFAULT_CHAR_CODE_PLAY_BACK = 2;// "keyB"
-  function startRecord() {
-    console.log('start record');
-    scen = new haijs.Scenario();
-    scen.startRecord();
+  var HOTKEY_CHAR_CODE_START = 17;// "keyQ"
+  var HOTKEY_CHAR_CODE_STOP = 25;// "keyY"
+  var HOTKEY_CHAR_CODE_PLAY_BACK = 2;// "keyB"
+ 
+  function addDomElement() {
+    var element = getTemplateURL('haijs');
+    document.body.appendChild(element);
+  }
+ 
+  function setInitStart() {
+    document.onkeypress = checkKeyPress;
+  }
+
+  function checkKeyPress(e) {
+    if (e.ctrlKey) {
+      switch (e.charCode) {
+        case HOTKEY_CHAR_CODE_START:
+          startRecord();
+          break;
+        case HOTKEY_CHAR_CODE_STOP:
+          stopRecord();
+          break;
+        case HOTKEY_CHAR_CODE_PLAY_BACK:
+          playBackRecord();
+          break;
+      }
+    }
   }
   function stopRecord() {
     console.log('stop record');
@@ -22,30 +42,16 @@
       scen.playBack();
     }
   }
-  window.haijs = window.haijs || {};
-  function setInitStart() {
-    document.onkeypress = checkKeyPress;
-  }
-
-  function checkKeyPress(e) {
-    if (e.ctrlKey) {
-      switch (e.charCode) {
-        case DEFAULT_CHAR_CODE_START:
-          startRecord();
-          break;
-        case DEFAULT_CHAR_CODE_STOP:
-          stopRecord();
-          break;
-        case DEFAULT_CHAR_CODE_PLAY_BACK:
-          playBackRecord();
-          break;
-      }
-    }
+  function startRecord() {
+    console.log('start record');
+    scen = new haijs.Scenario();
+    scen.startRecord();
   }
   function activate() {
     setInitStart();
   }
 
   activate();
-
+  window.haijs = window.haijs || {};
+  haijs.addDomElement = addDomElement;
 }).call();

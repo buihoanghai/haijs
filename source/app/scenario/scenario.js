@@ -1,6 +1,7 @@
 ﻿(function () {
   'use strict';
   var STATUS = [""];
+  var templateUrl = "scenario/_tpl/scenario";
   function Scenario() {
     var vm = this;
     vm.time = +new Date();
@@ -11,15 +12,26 @@
     vm.stopRecord = stopRecord;
     vm.playBack = playBack;
     function init() {
-
+      createElement();
+    }
+    function createElement() {
+      var element = getTemplateURL(templateUrl);
     }
     function startRecord() {
+      _addListener();
+    }
+
+    function stopRecord() {
+      _removeListener();
+    }
+    function _addListener() {
       document.onclick = _onDocumentClick;
 
     }
-    function stopRecord() {
+    function _removeListener() {
       document.onclick = undefined;
     }
+
     function playBack() {
       if (vm.firstNode) {
         vm.firstNode.play(vm.time);
@@ -40,8 +52,8 @@
       vm.firstNode = vm.firstNode || node;
 
     }
-  } 
- 
+  }
+
 
   window.haijs.Scenario = Scenario;
 }).call();

@@ -20,7 +20,7 @@ module.exports = function (grunt) {
     options: {
       module:'haijsTemplate',
 	  rename:function(moduleName){
-		  return moduleName.replace('.tpl.html', '').replace('../source/app/_tpl/', '');
+		  return moduleName.replace('.tpl.html', '').replace('../source/app/', '');
 	  }
     },
     mytemplate: {
@@ -131,7 +131,7 @@ module.exports = function (grunt) {
         src: ['grunt_assets/tpl.temp/haijsTemplate.js','<%= app_files.js %>'],
         dest: 'dist/haijs.<%= pkg.version %>.js'
       },
-
+  
     },
     uglify: {
       header: {
@@ -209,8 +209,8 @@ module.exports = function (grunt) {
       },
 
       grunt_config: {
-        files: ['grunt.config.js'],
-        tasks: ['full_core'],
+        files: ['grunt.config.js','Gruntfile.js'],
+        tasks: ['full'],
       }
     }
 
