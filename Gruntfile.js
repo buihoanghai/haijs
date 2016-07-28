@@ -90,7 +90,7 @@ module.exports = function (grunt) {
         expand: true,
         rename: function (dest, src) {
           var ver = grunt.config('pkg.version');
-          return dest + "haijs" + ver + ".css";
+          return dest + "haijs." + ver + ".css";
         },
         options: {
           process: function (contents, srcpath) {
@@ -109,7 +109,7 @@ module.exports = function (grunt) {
         expand: true,
         rename: function (dest, src) {
           var ver = grunt.config('pkg.version');
-          return dest + "haijs" + ver + "min.css";
+          return dest + "haijs." + ver + "min.css";
         },
         options: {
           process: function (contents, srcpath) {

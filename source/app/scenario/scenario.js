@@ -14,9 +14,14 @@
     function init() {
       createElement();
     }
+    init();
+
     function createElement() {
-      var element = getTemplateURL(templateUrl);
+      vm.element = getTemplateURL(templateUrl);
+      $(document.body).append(vm.element);
+      viClick(vm.element,vm);
     }
+   
     function startRecord() {
       _addListener();
     }
@@ -33,6 +38,7 @@
     }
 
     function playBack() {
+      stopRecord();
       if (vm.firstNode) {
         vm.firstNode.play(vm.time);
       }
