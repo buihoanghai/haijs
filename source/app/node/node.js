@@ -22,19 +22,19 @@
       }
     }
 
-    function play(time,done) {
+    function play(time, done) {
       var timeout = vm.time - time;
       console.log('play :' + timeout);
-      setTimeout(function () {
+      _.delay(function () {
         vm.event.play();
         callNextNode(done);
       }, timeout);
     }
     function callNextNode(done) {
       if (vm.nextNode) {
-        vm.nextNode.play(vm.time);
+        vm.nextNode.play(vm.time, done);
       } else {
-        done();
+        _.delay(done, 100);
         console.log('done');
       }
     }

@@ -1,13 +1,17 @@
 ﻿<div class="scenario">
-  <button vi-click="playBack">plack back</button>
+  <h3>Scenario</h3>
   <div class="list-node">
-    <div>aaaa</div>
-    <div>aaaa</div>
+    <div vi-repeat="item in nodes">
+      <div vi-bind="item.time"></div>
+    </div>
   </div>
   <section>
-    <h3>Target</h3>
+
     <div>
-      <input type="text" name="target" vi-value="target"/>
+      <label>Target</label>
+      <input type="text" name="target" vi-model="target"/>
     </div>
   </section>
+  <button vi-click="playBack">plack back</button>
+
 </div> 

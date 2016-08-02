@@ -6,22 +6,23 @@
     var vm = this;
     vm.time = +new Date();
     vm.firstNode = undefined;
+    vm.digest = digest;
     vm.nodes = [];
     //define function
     vm.startRecord = startRecord;
     vm.stopRecord = stopRecord;
     vm.playBack = playBack;
+    vm.done = done;
     function init() {
       createElement();
+      digest();
     }
     init();
 
     function createElement() {
       vm.element = getTemplateURL(templateUrl);
       $(document.body).append(vm.element);
-      viClick(vm.element,vm);
     }
-   
     function startRecord() {
       _addListener();
     }
@@ -40,7 +41,16 @@
     function playBack() {
       stopRecord();
       if (vm.firstNode) {
-        vm.firstNode.play(vm.time);
+        vm.firstNode.play(vm.time, done);
+      }
+    }
+    function done() {
+      console.log('done');
+      var func = new Function(" return " + vm.target);
+      if (func()) {
+        console.log('success');
+      } else {
+        console.log('unsuccess');
       }
     }
     function _onDocumentClick(e) {
@@ -57,6 +67,12 @@
     function _setFirstNode(node) {
       vm.firstNode = vm.firstNode || node;
 
+    }
+    function digest() {
+      console.log('digest');
+      viClick(vm.element, vm);
+      viModel(vm.element, vm);
+      viBind(vm.element, vm);
     }
   }
 

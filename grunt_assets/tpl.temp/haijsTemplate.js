@@ -9,15 +9,19 @@ haijsTemplate["notification/_tpl/notification"] = "<div class=\"haijs\">\n" +
    "</div> ";
 
 haijsTemplate["scenario/_tpl/scenario"] = "<div class=\"scenario\">\n" +
-   "  <button vi-click=\"playBack\">plack back</button>\n" +
+   "  <h3>Scenario</h3>\n" +
    "  <div class=\"list-node\">\n" +
-   "    <div>aaaa</div>\n" +
-   "    <div>aaaa</div>\n" +
+   "    <div vi-repeat=\"item in nodes\">\n" +
+   "      <div vi-bind=\"item.time\"></div>\n" +
+   "    </div>\n" +
    "  </div>\n" +
    "  <section>\n" +
-   "    <h3>Target</h3>\n" +
+   "\n" +
    "    <div>\n" +
-   "      <input type=\"text\" name=\"target\" vi-value=\"target\"/>\n" +
+   "      <label>Target</label>\n" +
+   "      <input type=\"text\" name=\"target\" vi-model=\"target\"/>\n" +
    "    </div>\n" +
    "  </section>\n" +
+   "  <button vi-click=\"playBack\">plack back</button>\n" +
+   "\n" +
    "</div> ";

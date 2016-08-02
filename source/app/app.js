@@ -1,5 +1,6 @@
 ﻿(function () {
   'use strict';
+  window.haijsTemplate = {};
   window.scen = {};
   var HOTKEY_CHAR_CODE_START = 17;// "keyQ"
   var HOTKEY_CHAR_CODE_STOP = 25;// "keyY"
@@ -53,5 +54,6 @@
 
   activate();
   window.haijs = window.haijs || {};
+  haijs.vietCount = 0;
   haijs.addDomElement = addDomElement;
 }).call();
