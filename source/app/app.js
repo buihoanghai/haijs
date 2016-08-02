@@ -1,6 +1,6 @@
 ﻿(function () {
   'use strict';
-  window.haijsTemplate = {};
+  window.haijsTemplate = window.haijsTemplate || {};
   window.scen = {};
   var HOTKEY_CHAR_CODE_START = 17;// "keyQ"
   var HOTKEY_CHAR_CODE_STOP = 25;// "keyY"
